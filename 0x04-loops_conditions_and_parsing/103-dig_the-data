@@ -4,9 +4,4 @@
 awk '{
 	counts[$1, $9]++;
 	next
-} END {
-	for (i in counts) {
-		split(i, sep, SUBSEP);
-		print counts[sep[1], sep[2]], sep[1], sep[2]
-	}
 }' apache-access.log | sort -gr
