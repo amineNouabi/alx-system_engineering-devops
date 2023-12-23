@@ -2,7 +2,6 @@
 # Bash init script for ./manage_my_process
 
 PID_FILE=/var/run/my_process.pid
-OUTPUT_FILE=/tmp/my_process
 
 start_process() {
 	./manage_my_process &
