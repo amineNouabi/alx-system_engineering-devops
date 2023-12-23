@@ -21,7 +21,7 @@ int infinite_while(void)
 /**
  * main - Creates 5 zombie process and hangs parent process.
  *
- * Return: 0 if success and 0 otehrwise.
+ * Return: 0 if success and 1 otehrwise.
  */
 int main(void)
 {
@@ -45,5 +45,5 @@ int main(void)
 		}
 	}
 	infinite_while();
-	return (0);
+	return (EXIT_SUCCESS);
 }
