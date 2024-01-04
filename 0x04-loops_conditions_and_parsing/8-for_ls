@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# This script is displaying files without the first part of their name
-
-for file in *
-do
-	echo "${file##*-}"
-done
