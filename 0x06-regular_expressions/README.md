@@ -21,3 +21,5 @@ In this project, we will learn about regular expressions. Regular expressions ar
 6. Call me maybe - Find a regular expression that will match a 10 digit phone number.
 
 7. OMG WHY ARE YOU SHOUTING? - Find a regular expression that will match only capital letters.
+
+8. Textme - Extract the sender, the receiver, the flags, and the message : `[SENDER: RECEIVER] Message (flags)` from a log file.
