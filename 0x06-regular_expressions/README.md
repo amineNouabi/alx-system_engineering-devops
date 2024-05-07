@@ -19,3 +19,5 @@ In this project, we will learn about regular expressions. Regular expressions ar
 5. Not quite HBTN yet - Find a regular expression that always starts with `h` ends with `n` and can have any single character in between.
 
 6. Call me maybe - Find a regular expression that will match a 10 digit phone number.
+
+7. OMG WHY ARE YOU SHOUTING? - Find a regular expression that will match only capital letters.
