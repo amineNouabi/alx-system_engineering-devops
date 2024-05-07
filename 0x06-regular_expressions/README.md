@@ -15,3 +15,7 @@ In this project, we will learn about regular expressions. Regular expressions ar
 3. Repetition Token #2 - Find a regular expression that will match the following: `hbtn` or `hbttn` or `hbtttn` or `hbttttn` or `hbtttttn` ...
 
 4. Repetition Token #3 - Find a regular expression that will match the following: `hbn` or `hbtn` or `hbttn` or `hbtttn` or `hbttttn` ...
+
+5. Not quite HBTN yet - Find a regular expression that always starts with `h` ends with `n` and can have any single character in between.
+
+6. Call me maybe - Find a regular expression that will match a 10 digit phone number.
