@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Get the active IP addresses of the current machine.
+
+ip -o -f inet addr show | awk '{print $4}' | cut -d"/" -f1

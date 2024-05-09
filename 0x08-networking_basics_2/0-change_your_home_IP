@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# This script configures hosts file to resolve the domain names as follows:
+#	-	localhost		to	127.0.0.2
+#	-	facebook.com	to	8.8.8.8
+
+# Check if the script is run as root
+if [ "$EUID" -ne 0 ]; then
+	echo "Please run as root"
+	exit 1
+fi
+
+# Define the domain names and their corresponding IP addresses
+declare -A hosts=(
+	["localhost"]="127.0.0.2"
+	["facebook.com"]="8.8.8.8"
+)
+
+# Backup the hosts file
+cp /etc/hosts /etc/hosts.bak
+
+# Add the domain names and their corresponding IP addresses to the hosts file
+for domain in "${!hosts[@]}"; do
+	# If the domain exists in the hosts file, delete the existing line
+	sudo sed -i "/\b$domain\b/d" /etc/hosts
+	# Append the new domain:ip pair
+	echo "${hosts[$domain]} $domain" | sudo tee -a /etc/hosts >/dev/null
+done
