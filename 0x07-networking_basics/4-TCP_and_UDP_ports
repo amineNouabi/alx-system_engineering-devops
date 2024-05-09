@@ -1,2 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# List all listening ports and the process that is listening on them
+
 netstat -lnp
