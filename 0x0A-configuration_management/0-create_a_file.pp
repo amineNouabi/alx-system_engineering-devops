@@ -4,7 +4,7 @@ file {
     ensure      => file,
     path        => '/tmp/school',
     content     => 'I love Puppet',
-    group       => 'www_data',
-    owner       => 'www_data',
+    group       => 'www-data',
+    owner       => 'www-data',
     permissions => '0744',
 }
