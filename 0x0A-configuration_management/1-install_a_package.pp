@@ -1,4 +1,5 @@
-# Install flask package
+# Install flask==2.1.0 package using pip3
 package { 'flask':
-  ensure => present,
+  ensure   => '2.1.0',
+  provider => 'pip3',
 }
