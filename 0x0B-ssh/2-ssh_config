@@ -3,3 +3,4 @@
 Host 273190-web-01
 	HostName 273190-web-01
 	IdentityFile ~/.ssh/school
+	IdentitiesOnly yes
