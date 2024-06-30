@@ -1,3 +1,5 @@
-#!/usr/bin/env bash
-# Creates an RSA key pair with a passphrase and saves it to a file
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/school -N "betty"
+# ssh_config file for the server 273190-web-01
+
+Host 273190-web-01
+	HostName 273190-web-01
+	IdentityFile ~/.ssh/school
