@@ -1,6 +1,6 @@
 # ssh_config file for the server 273190-web-01
 
 Host 273190-web-01
-	HostName 273190-web-01
-	IdentityFile ~/.ssh/school
-	IdentitiesOnly yes
+HostName 273190-web-01
+IdentityFile ~/.ssh/school
+IdentitiesOnly yes
