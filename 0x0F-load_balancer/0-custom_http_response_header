@@ -1,5 +1,5 @@
-#!/bin/bash
-# Configure an ngix web server with Custom HTTP Response Header
+#!/usr/bin/env bash
+# Configure an nginx web server with Custom HTTP Response Header
 
 if [ ! -d "/etc/apt" ]; then
 	echo "This script is dedicated to ubuntu systems."
