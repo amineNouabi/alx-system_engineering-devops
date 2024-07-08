@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on lb-01 server to distribute traffic to web-01 and web-02 using roundrobin.
+
+# Check if running on Ubuntu
+if [ ! -d "/etc/apt" ]; then
+	echo "This script is dedicated to ubuntu systems."
+	exit 1
+fi
+
+# Update and install HAproxy
+command -v haproxy &>/dev/null
+
+#shellcheck disable=SC2181
+if [ $? -ne 0 ]; then
+	sudo apt-get -y update
+	sudo apt-get -y install haproxy
+fi
+
+# Backup the original HAproxy configuration
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+
+STUDENT_ID="273190"
+
+HAPROXY_CONFIG="
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5s
+    timeout client  10s
+    timeout server  10s
+    timeout http-request 10s
+
+frontend nouabi-tech-frontend
+    bind *:80
+    stats uri /haproxy?stats
+    default_backend nouabi-tech-backend
+
+backend nouabi-tech-backend
+    balance roundrobin
+    server ${STUDENT_ID}-web-01 34.203.75.0:80 check
+    server ${STUDENT_ID}-web-02 100.24.237.131:80 check
+"
+# Configure HAproxy for roundrobin load balancing between web-01 and web-02
+# shellcheck disable=SC2154
+echo "$HAPROXY_CONFIG" | sudo dd status=none of=/etc/haproxy/haproxy.cfg
+
+# Enable HAproxy
+echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
+
+# Restart HAproxy to apply changes
+sudo service haproxy restart
