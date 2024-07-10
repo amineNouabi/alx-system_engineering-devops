@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Install and configure nginx on a web server
 
 # Check if running on Ubuntu
