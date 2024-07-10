@@ -1,0 +1,23 @@
+#!/bin/bash
+# Install and configure nginx on a web server
+
+# Check if running on Ubuntu
+if [ ! -d "/etc/apt" ]; then
+	echo "This script is dedicated to ubuntu systems."
+	exit 1
+fi
+
+# Update and install nginx
+apt-get update -y
+apt-get install -y nginx
+
+# Start nginx and allow HTTP
+sudo service nginx start
+sudo ufw allow 'Nginx HTTP'
+
+# Change ownership and permissions of /var/www/html
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www/html
+
+# Restart nginx
+sudo service nginx restart
