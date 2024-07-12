@@ -21,5 +21,6 @@ frontend nouabi-tech-frontend-ssl
 
 backend nouabi-tech-backend
     balance roundrobin
+    redirect scheme https code 301 if !{ ssl_fc }
     server 273190-web-01 34.203.75.0:80 check
     server 273190-web-02 100.24.237.131:80 check
