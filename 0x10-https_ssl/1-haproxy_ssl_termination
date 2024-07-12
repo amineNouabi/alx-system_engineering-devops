@@ -1,0 +1,26 @@
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    timeout connect 5s
+    timeout client  10s
+    timeout server  10s
+    timeout http-request 10s
+
+frontend nouabi-tech-frontend
+    bind *:80
+    stats uri /haproxy?stats
+    default_backend nouabi-tech-backend
+
+frontend nouabi-tech-frontend-ssl
+    bind *:443 ssl crt /etc/haproxy/certs/www.nouabi.tech.pem
+    acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+    stats uri /haproxy?stats
+    default_backend nouabi-tech-backend
+
+backend nouabi-tech-backend
+    balance roundrobin
+    redirect scheme https code 301 if !{ ssl_fc }
+    server 273190-web-01 34.203.75.0:80 check
+    server 273190-web-02 100.24.237.131:80 check
