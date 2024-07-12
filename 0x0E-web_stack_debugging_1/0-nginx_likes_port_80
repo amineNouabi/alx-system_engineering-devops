@@ -7,9 +7,11 @@ if [ ! -d "/etc/apt" ]; then
 	exit 1
 fi
 
-# Update and install nginx
-apt-get update -y
-apt-get install -y nginx
+# Install Nginx if it's not already installed
+if ! nginx -v &>/dev/null; then
+	sudo apt-get update -y
+	sudo apt-get install -y nginx
+fi
 
 # Start nginx and allow HTTP
 sudo service nginx start

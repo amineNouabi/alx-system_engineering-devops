@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script checks subdomains of a domain
+
+function dig_formatted {
+	line="$(dig "$2.$1" | grep -A1 "ANSWER SECTION" | tail -n1)"
+	ip=$(echo "$line" | awk '{print $5}')
+	record=$(echo "$line" | awk '{print $4}')
+	echo "The subdomain $2 is a $record record and points to $ip"
+}
+
+subdomains=(www lb-01 web-01 web-02)
+
+if [ -z "$2" ]; then
+	for subdomain in "${subdomains[@]}"; do
+		dig_formatted "$1" "$subdomain"
+	done
+else
+	dig_formatted "$1" "$2"
+fi
