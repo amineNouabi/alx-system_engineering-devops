@@ -1,25 +1,10 @@
 #!/usr/bin/env bash
-# Install and configure nginx on a web server
+# Fix Nginx configuration so it listens on port 80
 
-# Check if running on Ubuntu
 if [ ! -d "/etc/apt" ]; then
-	echo "This script is dedicated to ubuntu systems."
+	echo "This script only works on Debian-based systems."
 	exit 1
 fi
 
-# Install Nginx if it's not already installed
-if ! nginx -v &>/dev/null; then
-	sudo apt-get update -y
-	sudo apt-get install -y nginx
-fi
-
-# Start nginx and allow HTTP
-sudo service nginx start
-sudo ufw allow 'Nginx HTTP'
-
-# Change ownership and permissions of /var/www/html
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www/html
-
-# Restart nginx
+sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
