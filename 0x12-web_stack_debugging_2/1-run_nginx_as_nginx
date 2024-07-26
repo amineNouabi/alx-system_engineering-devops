@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Runs nginx as the nginx user
+su nginx -s /bin/bash -c 'service nginx restart'
