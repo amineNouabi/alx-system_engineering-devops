@@ -4,10 +4,9 @@
 from requests import api
 from sys import argv
 
-API_URL = "https://jsonplaceholder.typicode.com"
-
 
 if __name__ == "__main__":
+    API_URL = "https://jsonplaceholder.typicode.com"
     USER_ID = int(argv[1])
     todos = api.get("{}/todos?userId={}".format(API_URL, USER_ID)).json()
     employee = api.get("{}/users/{}".format(API_URL, USER_ID)).json()
