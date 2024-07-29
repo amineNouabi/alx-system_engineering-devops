@@ -19,7 +19,7 @@ if __name__ == "__main__":
         if todo.get("completed"):
             completed_count += 1
 
-    print("Employee {} is done with tasks({}/{})".format(name,
+    print("Employee {} is done with tasks({}/{}):".format(name,
           completed_count, total_count))
     for todo in todos:
         if todo.get("completed"):
