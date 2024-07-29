@@ -12,16 +12,10 @@ if __name__ == "__main__":
     todos = api.get("{}/todos?userId={}".format(API_URL, USER_ID)).json()
     employee = api.get("{}/users/{}".format(API_URL, USER_ID)).json()
 
-    name = employee.get("name")
-    completed_count = 0
-    total_count = len(todos)
-
-    for todo in todos:
-        if todo.get("completed"):
-            completed_count += 1
+    username = employee.get("username")
 
     with open("{}.csv".format(USER_ID), "w") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for todo in todos:
-            writer.writerow([USER_ID, name, todo.get("completed"),
+            writer.writerow([USER_ID, username, todo.get("completed"),
                              todo.get("title")])
