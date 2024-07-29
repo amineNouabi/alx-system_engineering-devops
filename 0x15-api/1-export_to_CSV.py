@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""Gather data from an API"""
+"""Gather data from an API and export to CSV"""
 
+import csv
 from requests import api
 from sys import argv
 
@@ -19,8 +20,8 @@ if __name__ == "__main__":
         if todo.get("completed"):
             completed_count += 1
 
-    print("Employee {} is done with tasks({}/{})".format(name,
-          completed_count, total_count))
-    for todo in todos:
-        if todo.get("completed"):
-            print("\t {}".format(todo.get("title")))
+    with open("{}.csv".format(USER_ID), "w") as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        for todo in todos:
+            writer.writerow([USER_ID, name, todo.get("completed"),
+                             todo.get("title")])
