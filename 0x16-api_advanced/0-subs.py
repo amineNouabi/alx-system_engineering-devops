@@ -3,16 +3,17 @@
 Module defining number_of_subscribers function
 
 """
+import requests
+
+BASE_URL = 'https://www.reddit.com/'
+HEADERS = {'User-Agent': 'Mozilla/5.0'}
 
 
 def number_of_subscribers(subreddit):
     """Queries the Reddit API and returns the number of subscribers"""
-    import requests
 
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    response = requests.get(url, headers=headers, allow_redirects=False)
-
+    response = requests.get("{}r/{}/about.json".format(BASE_URL,
+                            subreddit), headers=HEADERS, allow_redirects=False)
     if response.status_code != 200:
         return 0
-    return response.json().get('data').get('subscribers')
+    return int(response.json().get('data').get('subscribers'))
