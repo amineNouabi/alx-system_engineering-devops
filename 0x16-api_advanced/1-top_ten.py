@@ -14,7 +14,7 @@ def top_ten(subreddit):
 
     response = get("{}r/{}/hot.json?limit=10".format(BASE_URL, subreddit),
                    headers=HEADERS, allow_redirects=False)
-    if response.status_code != 200:
+    if int(response.status_code) / 100 != 2:
         print(None)
         return
     data = response.json().get('data').get('children')
