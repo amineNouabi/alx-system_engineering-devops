@@ -6,7 +6,7 @@ Module defining number_of_subscribers function
 import requests
 
 BASE_URL = 'https://www.reddit.com/'
-HEADERS = {'User-Agent': 'My Custom one'}
+HEADERS = {'User-Agent': 'My-Custom-one'}
 
 
 def number_of_subscribers(subreddit):

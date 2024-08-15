@@ -3,18 +3,20 @@
 Module defining number_of_subscribers function
 
 """
-from requests import get
+import requests
 
 BASE_URL = 'https://www.reddit.com/'
-HEADERS = {'User-Agent': 'Mozilla/5.0'}
+HEADERS = {'User-Agent': 'My-Custom-one'}
 
 
 def top_ten(subreddit):
     """Queries the Reddit API and returns the number of subscribers"""
-
-    response = get("{}r/{}/hot.json?limit=10".format(BASE_URL, subreddit),
-                   headers=HEADERS, allow_redirects=False)
-    if int(response.status_code) / 100 != 2:
+    headers = requests.utils.default_headers()
+    headers.update(HEADERS)
+    response = requests.get("{}r/{}/hot.json?limit=10".format(BASE_URL,
+                                                              subreddit),
+                            headers=headers, allow_redirects=False)
+    if response.status_code / 100 != 2:
         print(None)
         return
     data = response.json().get('data').get('children')
