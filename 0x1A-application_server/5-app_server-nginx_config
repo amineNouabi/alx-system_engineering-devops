@@ -4,15 +4,9 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
-	root /var/www/html;
-
 	add_header X-Served-By "$HOSTNAME";
 
 	server_name _;
-
-	location / {
-		proxy_pass http://127.0.0.1:5003/2-hbnb;
-	}
 
 	location /api {
 		proxy_pass http://127.0.0.1:5002/api;
@@ -22,13 +16,17 @@ server {
 		proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
 	}
 
-	location /airbnb-onepage {
+	location = /airbnb-onepage/ {
 		proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
 	}
 
-	location /static {
+	location = /static {
 		proxy_pass http://127.0.0.1:5003;
 	}
 
-	error_page 404 /404.html;
+	location / {
+		proxy_pass http://127.0.0.1:5003/2-hbnb;
+	}
+
+	error_page 404 /var/www/html/404.html;
 }
